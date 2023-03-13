@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org"><!--Setamos o 'thymeleaf' para poder usar sua implementação;-->
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Notícia</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body>
+<h1>Editar Notícia!</h1>                 <!--action -> é o endereço-->
+<form th:object="${noticia}" th:action="@{/noticia/editar}" method="post">
+
+    <input type="hidden" th:field="*{id}">
+
+    <label for="titulo">titulo</label>
+    <input type="text" id="titulo" name="titulo" th:field="*{titulo}"/>
+    <br/>
+
+    <label for="imagem">imagem</label>
+    <input type="text" id="imagem" name="imagem" th:field="*{imagem}"/>
+    <br/>
+
+    <label for="autor">autor</label>
+    <input type="text" id="autor" name="autor" th:field="*{autor}"/>
+    <br/>
+
+    <label for="descricao">descricao</label>
+    <input type="text" id="descricao" name="descricao" th:field="*{descricao}"/>
+    <br/>
+
+<button class="btn btn-primary" type="submit">Salvar</button>
+<a th:href="@{/noticia}">Cancelar</a>
+
+</form>
+</body>
+</html>

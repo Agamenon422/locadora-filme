@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Lista de Notícias!</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <style>
+    body {
+      background-image: url('https://bityli.com/iYOx2M');
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-size: cover;
+    }
+  </style>
+</head>
+<body>
+<div >
+<h1>Lista de Notícias!</h1>
+<table class="table">
+  <thead>
+  <tr>
+
+    <th scope="col">Id</th>
+    <th scope="col">Imagem</th>
+    <th scope="col">Título</th>
+    <th scope="col">Autor</th>
+    <th scope="col">Descricao</th>
+
+  </tr>
+  </thead>
+  <tbody><!--o thymeleaf tem esse tbody;-->
+  <tr th:each="noticia : ${noticia}"><!--percorre cada elemento-->
+    <td th:text="${noticia.id}"></td>
+    <td> <img style="max-width: 250px" th:src="${noticia.imagem}"></td>
+    <td th:text="${noticia.titulo}"></td>
+    <td th:text="${noticia.autor}"></td>
+    <td th:text="${noticia.descricao}"></td>
+
+    <!--@ -> usado quando quero redirecionar algo-->
+    <td><a th:href="@{/noticia/editar/{id}(id=${noticia.id})}">Editar</a></td>
+    <td><a th:href="@{/noticia/remover/{id}(id=${noticia.id})}"
+           onclick="return confirm('Tem certeza que deseja excluir esta notícia?')">Remover</a></td>
+  </tr>
+  </tbody>
+</table>
+
+  <button type="button" class="btn btn-dark"><a th:href="@{/noticia/novo}">Adicionar novo Notícia</a></button>
+  <button type="button" class="btn btn-dark"><a th:href="@{/home}">voltar pagina inicial</a></button>
+</div>
+</body>
+</html>

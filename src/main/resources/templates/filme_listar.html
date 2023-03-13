@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:border-radius="http://www.w3.org/1999/xhtml"><!--Setamos o 'thymeleaf' para poder usar sua implementação;-->
+<head>
+
+  <meta charset="UTF-8">
+  <title>Lista de Filmes!</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <style>
+        body {
+            background-image: url('https://bityli.com/iYOx2M');
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: inherit;
+        }
+    </style>
+    <script src="https://unpkg.com/feather-icons"></script>
+</head>
+<body>
+<div >
+  <h1>Lista de Filmes!</h1>
+  <table class="table">
+    <thead>
+    <tr>
+        <th scope="col">Imagem</th>
+        <th scope="col">Título</th>
+        <th scope="col">Gênero</th>
+        <th scope="col">Duração</th>
+        <th scope="col">Sinopse</th>
+        <th scope="col">Imdb</th>
+        <th scope="col">Like</th>
+        <th scope="col">disLike</th>
+        <th scope="col">Editar</th>
+        <th scope="col">Excluir</th>
+    </tr>
+    </thead>
+    <tbody><!--o thymeleaf tem esse tbody;-->
+    <tr th:each="filme : ${filmes}"><!--percorre cada elemento-->
+
+        <td> <img style="max-width: 250px" th:src="${filme.imagem}"></td>
+        <td th:text="${filme.titulo}"></td>
+        <td th:text="${filme.genero}"></td>
+        <td th:text="${filme.duracao}"></td>
+        <td th:text="${filme.sinopse}"></td>
+        <td th:text="${filme.imdb}"></td>
+        <td><a th:href="@{/filme/like/{id}(id=${filme.id})}"><i data-feather="thumbs-up"></i>
+        <p th:text="${filme.like}"></p></a></td>
+        <td><a th:href="@{/filme/dislike/{id}(id=${filme.id})}"><i data-feather="thumbs-down"></i>
+            <p th:text="${filme.dislike}"></p></a></td>
+        <!--@ -> usado quando quero redirecionar algo-->
+        <td><a th:href="@{/filme/editar/{id}(id=${filme.id})}">Editar</a></td>
+        <td><a th:href="@{/filme/remover/{id}(id=${filme.id})}"
+               onclick="return confirm('Tem certeza que deseja excluir este filme?')">Remover</a></td>
+    </tr>
+    </tbody>
+  </table>
+
+    <br>
+    <button type="button" class="btn btn-dark"><a th:href="@{/filme/novo}">Adicionar novo Filme</a></button>
+    <button type="button" class="btn btn-dark"><a th:href="@{/home}">voltar pagina inicial</a></button>
+
+</div>
+<script>
+    feather.replace()
+</script>
+</body>
+</html>

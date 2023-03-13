@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Atores!</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body>
+<h1>Lista de Atores!</h1>
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">Imagem</th>
+        <th scope="col">Nome</th>
+        <th scope="col">Apelido</th>
+        <th scope="col">Nacionalidade</th>
+    </tr>
+    </thead>
+    <tbody><
+    <tr th:each="ator : ${ator}"><
+        <td th:text="${ator.nome}"></td>
+        <td th:text="${ator.apelido}"></td>
+        <td> <img style="max-width: 200px" th:src="${ator.imagem}"></td>
+        <td th:text="${filme.nacionalidade}"></td>
+        <td><a th:href="@{/ator/editar/{nome}(nome=${ator.nome})}">Editar</a></td>
+        <td><a th:href="@{/ator/remover/{nome}(nome=${ator.nome})}"
+               onclick="return confirm('Tem certeza que deseja excluir este ator?')">Remover</a></td>
+    </tr>
+    </tbody>
+</table>
+<a th:href="@{/filme/novo}">Adicionar novo filme</a>
+
+</body>
+</html>
